@@ -99,7 +99,7 @@ class MainPage extends StatelessWidget {
         title: const Text('FAQs'),
         leading: const Icon(Icons.contact_support),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FAQs()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FAQs()));
         },
       ),
     ],
@@ -141,19 +141,6 @@ class Customer_Care extends StatelessWidget {
       appBar: AppBar(title: const Text('Customer Care'),), 
       body: const Center( 
         child: Text('Implement chatbot for extra points and maybe try call function'), 
-      ), 
-    ); 
-  } 
-}
-class FAQs extends StatelessWidget {
-  const FAQs({super.key});
-  
-  @override 
-  Widget build(BuildContext context) { 
-    return Scaffold( 
-      appBar: AppBar(title: const Text("FAQ's"),), 
-      body: const Center( 
-        child: Text('Need to make, will be static, update when necessary via code'), 
       ), 
     ); 
   } 
@@ -312,4 +299,100 @@ class Reward {
   final String image;
 
   Reward({required this.title, required this.description, required this.image});
+}
+
+class FAQ {
+  final String question;
+  final String answer;
+
+  FAQ({required this.question, required this.answer});
+}
+
+class FAQs extends StatefulWidget {
+  @override
+  _FAQPageState createState() => _FAQPageState();
+}
+
+class _FAQPageState extends State<FAQs> {
+  final List<bool> _isExpanded = List.generate(4, (_) => false); // Tracks expanded state
+
+  final List<FAQ> faqs = [
+    FAQ(question: "1. What is Flutter?", answer: "Flutter is an open-source UI software development toolkit."),
+    FAQ(question: "2. How does Flutter work?", answer: "Flutter works by compiling to native ARM code."),
+    FAQ(question: "3. Is Flutter a good choice for mobile development?", answer: "Absolutely! It’s like having a Swiss Army knife, but for coding."),
+    FAQ(question: "4. Can I build web apps with Flutter?", answer: "Yes, you can! It’s like getting a two-for-one deal at a fancy restaurant."),
+    // Add more FAQs as needed
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('FAQs')),
+      body: Center(
+        child: Container(
+          width: 1000, // Set your desired width here
+          child: ListView(
+            padding: EdgeInsets.all(16.0),
+            children: faqs.asMap().entries.map((entry) {
+              int index = entry.key;
+              FAQ faq = entry.value;
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Background color
+                    borderRadius: BorderRadius.circular(12), // Curved corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2), // Shadow color
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0), // Padding inside the container
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Align the question to the left
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _isExpanded[index] = !_isExpanded[index]; // Toggle expansion state
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                faq.question,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                              Icon(
+                                _isExpanded[index] ? Icons.remove : Icons.add, // Change icon based on state
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                        // The answer section
+                        if (_isExpanded[index]) // Show answer only if expanded
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0), // Padding for the answer
+                            child: Text(
+                              faq.answer,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
+  }
 }
