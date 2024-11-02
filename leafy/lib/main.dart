@@ -71,35 +71,35 @@ class MainPage extends StatelessWidget {
         title: const Text('User'),
         leading: const Icon(Icons.verified_user),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserInfo()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserInfo()));
         },
       ),
       ListTile(
         title: const Text('Rewards'),
         leading: const Icon(Icons.card_giftcard),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Rewards()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Rewards()));
         },
       ),
       ListTile(
         title: const Text('Log out'),
         leading: const Icon(Icons.logout),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserInfo()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserInfo()));
         },
       ),
       ListTile(
         title: const Text('Customer Care'),
         leading: const Icon(Icons.question_answer),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Customer_Care()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Customer_Care()));
         },
       ),
       ListTile(
         title: const Text('FAQs'),
         leading: const Icon(Icons.contact_support),
         onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FAQs()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FAQs()));
         },
       ),
     ],
@@ -118,48 +118,56 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class UserInfo extends StatelessWidget { 
+class UserInfo extends StatelessWidget {
+  const UserInfo({super.key});
+ 
   
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: Text('User Info'),), 
+      appBar: AppBar(title: const Text('User Info'),), 
       body: const Center( 
         child: Text('Take from cloud and refer to it in the formatting will req backend and frontend linkage'), 
       ), 
     ); 
   } 
 }
-class Rewards extends StatelessWidget { 
+class Rewards extends StatelessWidget {
+  const Rewards({super.key});
+ 
   
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: Text('Rewards'),), 
+      appBar: AppBar(title: const Text('Rewards'),), 
       body: const Center( 
         child: Text('Grid List with conformation boxes and search and filter functionality using metadata'), 
       ), 
     ); 
   } 
 }
-class Customer_Care extends StatelessWidget { 
+class Customer_Care extends StatelessWidget {
+  const Customer_Care({super.key});
+ 
   
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: Text('Customer Care'),), 
+      appBar: AppBar(title: const Text('Customer Care'),), 
       body: const Center( 
         child: Text('Implement chatbot for extra points and maybe try call function'), 
       ), 
     ); 
   } 
 }
-class FAQs extends StatelessWidget { 
+class FAQs extends StatelessWidget {
+  const FAQs({super.key});
+ 
   
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: Text("FAQ's"),), 
+      appBar: AppBar(title: const Text("FAQ's"),), 
       body: const Center( 
         child: Text('Need to make, will be static, update when necessary via code'), 
       ), 
