@@ -313,7 +313,7 @@ class FAQs extends StatefulWidget {
   _FAQPageState createState() => _FAQPageState();
 }
 
-class _FAQPageState extends State<FAQs> {
+class _FAQPageState extends State<FAQs> with TickerProviderStateMixin {
   final List<bool> _isExpanded = List.generate(4, (_) => false); // Tracks expanded state
 
   final List<FAQ> faqs = [
@@ -375,15 +375,20 @@ class _FAQPageState extends State<FAQs> {
                             ],
                           ),
                         ),
-                        // The answer section
-                        if (_isExpanded[index]) // Show answer only if expanded
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0), // Padding for the answer
-                            child: Text(
-                              faq.answer,
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
+                        // The answer section with animated size
+                        AnimatedSize(
+                          duration: const Duration(milliseconds: 300), // Duration of the animation
+                          curve: Curves.easeInOut, // Animation curve
+                          child: _isExpanded[index]
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 12.0), // Additional space above the answer
+                                  child: Text(
+                                    faq.answer,
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                )
+                              : SizedBox.shrink(), // Shrinks when not expanded
+                        ),
                       ],
                     ),
                   ),
