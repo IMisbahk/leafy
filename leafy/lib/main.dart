@@ -145,13 +145,14 @@ class RewardsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rewards'),
-      ),
-      body: SizedBox(
-        height: 1000,
-        width: 1200,
-        child: GridView.builder(
+  appBar: AppBar(
+    title: const Text('Rewards'),
+  ),
+  body: Center( // Wrap GridView in a Center widget
+    child: SizedBox(
+      height: 1000, // Adjust height as necessary
+      width: 1200, // Adjust width as necessary
+      child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 10,
@@ -160,10 +161,12 @@ class RewardsScreen extends StatelessWidget {
         itemCount: rewards.length,
         itemBuilder: (context, index) {
           return RewardCard(reward: rewards[index]);
-          },
-        ),
+        },
       ),
-    );
+    ),
+  ),
+);
+
   }
 }
 
