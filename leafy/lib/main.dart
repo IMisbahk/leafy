@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: MyApp()));
+  runApp((const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context)
@@ -24,8 +35,8 @@ class MyApp extends StatelessWidget {
         ),
      drawer: Drawer(
   child: ListView(
-    children: const <Widget>[
-      DrawerHeader(
+    children: <Widget>[
+      const DrawerHeader(
         decoration: BoxDecoration(
           color: Colors.green,
         ),
@@ -38,7 +49,7 @@ class MyApp extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 165, 255, 137),
-                  radius: 25,
+                  radius: 25, 
                   child: Text(
                     "A",
                     style: TextStyle(fontSize: 30.0, color: Colors.blue),
@@ -57,24 +68,39 @@ class MyApp extends StatelessWidget {
         ),
       ),
       ListTile(
-        title: Text('User'),
-        leading: Icon(Icons.verified_user),
+        title: const Text('User'),
+        leading: const Icon(Icons.verified_user),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserInfo()));
+        },
       ),
       ListTile(
-        title: Text('Rewards'),
-        leading: Icon(Icons.card_giftcard),
+        title: const Text('Rewards'),
+        leading: const Icon(Icons.card_giftcard),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Rewards()));
+        },
       ),
       ListTile(
-        title: Text('Log out'),
-        leading: Icon(Icons.logout),
+        title: const Text('Log out'),
+        leading: const Icon(Icons.logout),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserInfo()));
+        },
       ),
       ListTile(
-        title: Text('Customer Care'),
-        leading: Icon(Icons.question_answer),
+        title: const Text('Customer Care'),
+        leading: const Icon(Icons.question_answer),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Customer_Care()));
+        },
       ),
       ListTile(
-        title: Text('FAQs'),
-        leading: Icon(Icons.contact_support),
+        title: const Text('FAQs'),
+        leading: const Icon(Icons.contact_support),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FAQs()));
+        },
       ),
     ],
   ),
@@ -90,4 +116,53 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class UserInfo extends StatelessWidget { 
+  
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      appBar: AppBar(title: Text('User Info'),), 
+      body: const Center( 
+        child: Text('Take from cloud and refer to it in the formatting will req backend and frontend linkage'), 
+      ), 
+    ); 
+  } 
+}
+class Rewards extends StatelessWidget { 
+  
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      appBar: AppBar(title: Text('Rewards'),), 
+      body: const Center( 
+        child: Text('Grid List with conformation boxes and search and filter functionality using metadata'), 
+      ), 
+    ); 
+  } 
+}
+class Customer_Care extends StatelessWidget { 
+  
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      appBar: AppBar(title: Text('Customer Care'),), 
+      body: const Center( 
+        child: Text('Implement chatbot for extra points and maybe try call function'), 
+      ), 
+    ); 
+  } 
+}
+class FAQs extends StatelessWidget { 
+  
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      appBar: AppBar(title: Text("FAQ's"),), 
+      body: const Center( 
+        child: Text('Need to make, will be static, update when necessary via code'), 
+      ), 
+    ); 
+  } 
 }
