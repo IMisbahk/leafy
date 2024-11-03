@@ -29,7 +29,7 @@ class MainPage extends StatelessWidget {
             children: [
               Icon(Icons.energy_savings_leaf),
               SizedBox(width: 8),
-              Text('Leafy'),
+              Text('leafy'),
             ],
           ),
         ),
